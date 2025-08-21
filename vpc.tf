@@ -37,6 +37,7 @@ resource "aws_subnet" "public" {
         Name = "${var.project}-${var.environment}-public-${local.az_names[count.index]}"
     }   
   )
+  depends_on = [aws_vpc.main]
 }
 
 
@@ -54,6 +55,7 @@ resource "aws_subnet" "private" {
         Name = "${var.project}-${var.environment}-private-${local.az_names[count.index]}"
     }   
   )
+  depends_on = [aws_vpc.main]
 }
  
 
@@ -71,6 +73,7 @@ resource "aws_subnet" "private" {
         Name = "${var.project}-${var.environment}-database-${local.az_names[count.index]}"
     }   
   )
+  depends_on = [aws_vpc.main]
 }
  
 resource "aws_eip" "nat" {
